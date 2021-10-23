@@ -1,0 +1,239 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage{pythontex}
+\usepackage[german]{babel}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{ulem}
+\usepackage{subfig}
+\usepackage{lastpage}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[parfill]{parskip}
+\usepackage{framed}
+\usepackage{fancyhdr}
+\usepackage[headheight=55pt,
+ left=25mm, bottom =25mm]{geometry}
+
+ 
+\graphicspath {{Figures/}}
+
+\usepackage{scalerel,stackengine,amsmath}
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+
+
+% Package to open file containing variables
+\usepackage{datatool, filecontents}
+\DTLsetseparator{,}% Set the separator between the columns.
+
+% import data
+\DTLloaddb[noheader, keys={thekey,thevalue}]{pythonvariables}{pythonvariables.dat}
+% Loads mydata.dat with column headers 'thekey' and 'thevalue'
+\newcommand{\var}[1]{\DTLfetch{pythonvariables}{thekey}{#1}{thevalue}}
+%To access the specfic variable, call \var{thekey}
+
+%%%%%% SANS SERIF FONT %%%%%%%%
+%\usepackage[OT1]{fontenc}
+%\renewcommand*\familydefault{\sfdefault}
+
+
+
+\newcommand\MyBox[2]{
+  \fbox{\lower0.75cm
+    \vbox to 1.7cm{\vfil
+      \hbox to 1.7cm{\hfil\parbox{1.4cm}{#1\\#2}\hfil}
+      \vfil}%
+  }%
+}
+
+%Header Customization
+\fancyhead[L]{\includegraphics[width=0.23\linewidth]{Figures/phytax_logo.jpg} \\
+}
+\fancyhead[C]{\footnotesize
+\begin{tabular}{ l }
+ Phytax GmbH \\ 
+ Wagistrasse 23 \\  
+ CH-8952 Schlieren 
+\end{tabular}
+}
+
+\fancyhead[C]{\footnotesize
+ Phytax GmbH \\ 
+ Wagistrasse 23 \\  
+ CH-8952 Schlieren 
+}
+\fancyhead[R]{ \footnotesize \noindent \href{mailto:info@phytax.ch}{info@phytax.ch} \\
+\href{http://www.phytax.ch}{www.phytax.ch}\\
+\href{tel:41434950430}{+41 (0) 43 495 04 30}}
+
+\pagestyle{fancy}
+\lfoot[]{\footnotesize Validierungsplan PHYDENT-\DatumRelease}
+\rfoot[]{\thepage/\pageref{LastPage} }
+\cfoot{}
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%% VARIABLEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\VersionPhEur{\var{versEuPH}}
+\newcommand\DatumRelease{\var{dateRelease}}
+\newcommand\AnzahlProdukte{\var{nrProducts}}
+\newcommand\VerhaeltnisLernValDaten{73.2:27.8}
+
+\newcommand\NoSpectraRefLearn{5200 (54.2\%)}
+\newcommand\NoSpectraRefVal{2000 (20.8\%)}
+\newcommand\NoSpectraPruef{2400 (25.0\%)}
+\newcommand\NrSpektren{7128}
+\newcommand\Granulatchargen{\var{nrGranulatcharges}}
+\newcommand\NrMatrix{72}
+\newcommand\DateRange{2020-2021}
+
+
+\begin{document}
+\section*{Validierungsbericht für Prüfungsmethode: PHYDENT-\DatumRelease }
+
+\renewcommand{\arraystretch}{1.2}
+\begin{center}
+\begin{tabular}{| m{3.5cm} | m{3.5cm}| m{3.5cm} |m{3.5cm}|}
+\hline
+ & Person & Datum & Visum \\
+\hline
+Erstellt & & &  \\
+& & &\\
+\hline
+Geprüft & & & \\
+& & & \\
+\hline
+Freigegeben & & & \\
+&&&\\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+
+\subsection*{Zusammenfassung}
+Die analytische Testmethode PHYDENT-\DatumRelease \ wurde gemäss Validierungsplan validiert. Die Methode wurde untersucht in Bezug auf Spezifizität und weitere kritische Parameter. PHYDENT-\DatumRelease\ ist fähig, Probenspektren dem korrekten Produkt, unter gleichzeitigem Ausschluss anderer zu erwartender Produkte zuzuordnen. Des Weiteren ist die Methode in der Lage, Trägermaterialien und Leermessungen korrekt zurückzuweisen. Vergleichspräzision ist indirekt gegeben, da die Methode spezifisch ist. Die Validierung gilt somit als bestanden.
+
+
+\subsection*{Zweck}
+Dieser Validierungsbericht beschreibt die Validierung der Analysemethode PHYDENT-\DatumRelease\ gemäss Validierungsplan.
+
+\newpage
+\tableofcontents
+
+\newpage
+
+\section{Beschreibung der Methode}
+Siehe Validierungsplan.
+
+\section{Vorgehen}
+Siehe Validierungsplan.
+
+\section{Aktzeptanzkriterien}
+Die Validierung gilt als bestanden falls:
+
+\begin{enumerate}
+\item Mindestens $99\%$ aller Einzelmessungen des Prüfdatensatzes korrekt identifiziert werden;
+\item keine falsch positiven Resultate auftreten;
+\item alle Trägermaterial- und Leermessungs-Spektren korrekt zurückgewiesen werden (richtig negativ);
+\end{enumerate}
+
+
+\section{Resultate und Diskussionen}
+Alle Akzeptanzkriterien hinsichtlich Spezifität und weiteren kritischen Parametern wurden erfüllt. Die Prüfungsmethode PHYDENT ist somit für den beschriebenen Zweck geeignet (s. Validierungsplan). 
+
+\subsection{Spezifität}
+
+Somit ist die Prüfmethode hinreichend selektiv, um \Granulatchargen \ eindeutig und geräteübergreifend zu identifizieren. Da den Prüfdaten und den Lern/-Validierungsdaten Messungen unabhängiger Gebinde zugewiesen wurde, ist die Methode fähig, auf der Gebindeebene zu generalisieren.
+
+\subsection{Weitere kritische Parameter}
+\textbf{Vergleichpräzision} \\
+Vergleichspräzision wurde indirekt untersucht, indem der Gesamtdatensatz auf zwei baugleichen Geräten von verschiedenen Analysten gemessen wurde(siehe Anhang \ref{sec:Vergleichspräzision}). Vergleichspräzision ist somit indirekt gegeben, da Spezifität gegeben ist.
+
+
+
+
+
+
+
+
+
+\section{Verantwortlichkeiten}
+\uline{Validierungsverantwortliche Personen:}\\
+Dr. Peter Staub (Phytax GmbH, Schlieren)
+
+\uline{Fachtechnisch verantwortliche Person:}\\
+Dr. Shu-Yuan Wang-Tschen(Phytax GmbH, Schlieren)
+
+\uline{Externe Beratung:}\\
+Dr. Jürgen Schmitt (Synthon Analytics GmbH, Heidelberg)
+
+
+\section{Geräte und Software}
+\begin{itemize}
+\item ALPHA Spektrometer Basismodul (Bruker; Gerätenr. G092; Seriennr. 101938)
+\item ALPHA Spektrometer Basismodul (Bruker; Gerätenr. G164; Seriennr. 105305)
+\item ALPHA Platinum ATR Messmodul (Bruker; Gerätenr. G092; Seriennr. 101938)
+\item ALPHA Platinum ATR Messmodul (Bruker; Gerätenr. G164; Seriennr. 105305)
+\item OPUS Software Suite (Version 8.5; Bruker)
+\item NeuroDeveloper Software (Version 2.6; Synthon Analytics)
+\item R
+\end{itemize}
+
+
+\section{Referenzen und mitgeltende Unterlagen}
+\begin{itemize}
+\item SOP 1.11.1 „Dokumentation“
+\item SOP 3.2.3 „Dünnschichtchromatographie”
+\item SOP 3.6.6 „Referenzen für DC-Identitätsbestimmungen“
+\item SOP 3.6.7 „Produktspezifische DC-Referenzmuster”
+\item SOP 3.7.1 „MIR Spektroskopie“
+\item SOP 3.7.3 „FTIR-basierte Prüfmethoden der zweiten Identifikationsreihe“
+\item SOP 6.1.1 „Validierungsmasterplan“
+\item SOP 6.2.8 „Qualifizierung Infrarotspektrometer“
+\item SOP 6.3.1 „Methodenvalidierung“
+\item SOP 6.8.13 „Zugriffsregelung des IR Spektrometers“
+\item Arbeitsanweisung 3.7.1.A1 „MIR Methodik“
+\item Arbeitsanweisung 3.7.3.A1 „Entwicklung von künstlichen neuronalen Netzen in NeuroDeveloper“
+\item Gerätedokumentation G092, G164
+\item Ph. Eur. (\VersionPhEur; 0765)
+\item Ph. Eur. (\VersionPhEur; 2.8.25)
+\item Ph. Eur. (\VersionPhEur; 2.2.24)
+\item Ph. Eur. (\VersionPhEur; 5.21)
+\item Bruker Optik GmbH (2006). OPUS Spektroskopie Software Benutzerhandbuch (Version 8). Ettlingen, Deutschland.
+\item Fahlman, S.E. (1988) An Empirical Study of Learning Speed in Back-Propagation Networks (CMU-CS-88-162), Technical Report, Department of Computer Science, Carnegie Mellon University, Pittsburgh, PA.
+\item Guideline, I. H. T., 2005. Validation of analytical procedures: text and methodology. Q2 (R1), 1.
+\item Priddy K.L., Keller P.E., 2005. Artificial Neural Networks: An Introduction. SPIE Press.
+\item R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL \href{https://www.R-project.org/}{https://www.R-project.org/}.
+\item Udelhoven T., Novozhilov M., Schmitt J., 2003. The NeuroDeveloper\textsuperscript{\textregistered}: a tool for modular neural classification of spetroscopic data. Chemometrics and intelligent laboratory systems, 66: 219-226.
+
+\end{itemize}
+
+
+\appendix
+
+\section{Unabhängige Prüfdaten}
+Siehe separate Datei.
+
+
+\section{Detailreport}
+Siehe separate Datei.
+
+\section{Weitere kritische Parameter (Prüfdaten)}
+
+
+\subsection{Vergleichspräzision}
+\label{sec:Vergleichspräzision}
+
+\subsection{Luftfeuchtigkeit Gerät}
+
+\subsection{Temperatur Gerät}
+
+\end{document}

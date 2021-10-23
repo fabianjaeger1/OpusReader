@@ -4,8 +4,9 @@
 \usepackage{graphicx}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{ulem}
-\usepackage{subfig}
 \usepackage{lastpage}
 \usepackage[parfill]{parskip}
 \usepackage{framed}
@@ -535,11 +536,46 @@ Siehe separate Datei.
 
 \subsection{Vergleichspräzision}
 
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[c]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/nr_measurementsdevices}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[c]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/analyst_plot}
+        \caption{}
+    \end{subfigure}
+    \caption{a) Anzahl gemessene Spektren nach Gerät (Lern- \& Validierungsdaten) b) Anzahl gemessen Spektren nach Analyst (Lern- \& Validierungsdaten).}
+\end{figure}
 
 
 \subsection{Luftfeuchtigkeit Gerät}
 
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[c]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/abshum_plot}
+        \caption{}
+    \end{subfigure}
+    \begin{subfigure}[c]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/rehum_plot}
+        \caption{}
+    \end{subfigure}
+    \caption{a) Absolute Luftfeuchtigkeit am Gerät (Lern- \& Validierungsdaten) b) Relative Luftfeuchtigkeit am Gerät(Lern- \& Validierungsdaten).}
+\end{figure}
+
 \subsection{Temperatur Gerät}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/temp_plot}
+	\caption{Gerätetemperatur bei Hintergrund- und Probenmessung (Lern- \& Validierungsdaten.}
+\end{figure}
 
 \section{Risikoanalyse}
 \label{append:Risikoanalyse}

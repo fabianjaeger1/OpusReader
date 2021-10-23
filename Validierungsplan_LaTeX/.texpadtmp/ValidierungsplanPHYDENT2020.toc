@@ -1,0 +1,40 @@
+\babel@toc {german}{}
+\contentsline {section}{\numberline {1}Beschreibung der Methode}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Geltungsbereich}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Referenzen}{5}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Granulate}{5}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Hilfsstoffe}{5}{subsubsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.3}Spektraldaten}{5}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Sampling Design}{5}{subsubsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.4}Methodenentwicklung}{6}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Systemeignungstest}{6}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Vorgehen}{7}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Selektivität / Spezifität}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Robustheit}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Weitere kritische Parameter}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Prüfkriterien}{9}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Aktzeptanzkriterien}{9}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Vorgehen}{10}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Dokumentation, Auswertung und Validierungsbericht}{10}{section.4}%
+\contentsline {section}{\numberline {5}Besondere Bestimmungen}{10}{section.5}%
+\contentsline {section}{\numberline {6}Verantwortlichkeiten}{10}{section.6}%
+\contentsline {section}{\numberline {7}Geräte und Software}{10}{section.7}%
+\contentsline {section}{\numberline {8}Referenzen und mitgeltende Unterlagen}{11}{section.8}%
+\contentsline {section}{\numberline {A}Chemometrische Verfahren (Ph.Eur 5.21)}{12}{appendix.A}%
+\contentsline {section}{\numberline {B}IR-Spektropskopie (Ph.Eur. 2.2.24)}{15}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}Kontrolle der Leistungsfähigkeit der Ausstattung}{15}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Probenvorbereitung}{15}{subsection.B.2}%
+\contentsline {subsubsection}{\numberline {B.2.1}Messung durch abgeschwächte Totalreflexion}{15}{subsubsection.B.2.1}%
+\contentsline {subsubsection}{\numberline {B.2.2}Wellenzahlskala \& spektrale Auflösung}{16}{subsubsection.B.2.2}%
+\contentsline {subsection}{\numberline {B.3}Vorbereitung und Einbringen der Probe}{16}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}Methoden}{16}{subsection.B.4}%
+\contentsline {section}{\numberline {C}Liste unterstützte Produkte}{18}{appendix.C}%
+\contentsline {section}{\numberline {D}Liste unterstützte Chargen}{18}{appendix.D}%
+\contentsline {section}{\numberline {E}Spektren Lern-/Validierungsdaten}{18}{appendix.E}%
+\contentsline {section}{\numberline {F}Verwendete Eingabevariablen}{18}{appendix.F}%
+\contentsline {section}{\numberline {G}Verwendete Netzarchitektur}{18}{appendix.G}%
+\contentsline {section}{\numberline {H}Weitere kritische Parameter}{18}{appendix.H}%
+\contentsline {subsection}{\numberline {H.1}Vergleichspräzision}{18}{subsection.H.1}%
+\contentsline {subsection}{\numberline {H.2}Luftfeuchtigkeit Gerät}{18}{subsection.H.2}%
+\contentsline {subsection}{\numberline {H.3}Temperatur Gerät}{18}{subsection.H.3}%
+\contentsline {section}{\numberline {I}Risikoanalyse}{18}{appendix.I}%

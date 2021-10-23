@@ -8,6 +8,7 @@ import os
 import argparse
 import sys
 import csv
+import shutil
 from collections import Counter
 import pandas as pd 
 import collections
@@ -29,9 +30,10 @@ sns.set()
 
 # Prompt variable input date
 
-def createLaTeXDirectory():
-    currentworkingdir = os.getcwd()
-    path = ("%s/Validierungsplan_LaTeX" % currentworkingdir)
+def createLaTeXDirectory(path_name):
+    # path = ("%s/%s" % (home_path, path_name))
+    path = "{}/{}".format(home_path, path_name)
+    print(path)
     
     try:
          os.mkdir(path)
@@ -40,9 +42,10 @@ def createLaTeXDirectory():
     else:
         print("Succesfully created the directory %s" % path)
 
-def createFiguresDirectory():
-    currentworkingdir = os.getcwd()
-    path = ("%s/Validierungsplan_LaTeX/Figures" % currentworkingdir)
+def createFiguresDirectory(path_name):
+    #currentworkingdir = os.getcwd()
+    #path = ("%s/%s/Figures" % (currentworkingdir,path_name))
+    path = "{}/{}/Figures".format(home_path, path_name)
     
     try:
          os.mkdir(path)
@@ -53,13 +56,33 @@ def createFiguresDirectory():
 
 date_release = input("Datum des Documentes (Titel): ")
 
-def createLaTeXFile():
+
+def createLaTeXFileBericht():
+    pathtemplate = "%s/Validierungsbericht_LaTeX_Template.tex" % home_path
+    if os.path.exists(pathtemplate):
+        createLaTeXDirectory("Validierungsbericht_LaTeX")
+        createFiguresDirectory("Validierungsbericht_LaTeX")
+        os.replace(pathtemplate, "{}/Validierungsbericht_LaTeX/ValidierungsberichtPHYDENT{}.tex".format(home_path,date_release))
+        # newpath = "%s/Validierungsplan_LaTeX" % os.getcwd()
+        # os.chdir(newpath)
+        # filename = "ValidierungsplanPHYDENT%s.tex" % date_release
+    else:
+        path = "%s/Validierungsbericht_LaTeX" % home_path
+        if os.path.exists(path):
+            fileExt = r".tex"
+            file = [_ for _ in os.listdir(path) if _.endswith(fileExt)]
+            texfile = file[0]
+            os.chdir(path)
+            os.rename(texfile,"ValidierungsberichtPHYDENT%s.tex" % date_release)
+        pass
+
+def createLaTeXFilePlan():
     # currentworkingdir = os.getcwd()
     pathtemplate = "%s/Validierungsplan_LaTeX_Template.tex" % home_path
     if os.path.exists(pathtemplate):
-        createLaTeXDirectory()
-        createFiguresDirectory()
-        os.replace(pathtemplate, "Validierungsplan_LaTeX/ValidierungsplanPHYDENT%s.tex" % date_release)
+        createLaTeXDirectory("Validierungsplan_LaTeX")
+        createFiguresDirectory("Validierungsplan_LaTeX")
+        os.replace(pathtemplate, "{}/Validierungsplan_LaTeX/ValidierungsplanPHYDENT{}.tex".format(home_path,date_release))
         # newpath = "%s/Validierungsplan_LaTeX" % os.getcwd()
         # os.chdir(newpath)
         # filename = "ValidierungsplanPHYDENT%s.tex" % date_release
@@ -87,30 +110,31 @@ def createLaTeXFile():
 
 #createLaTeXDirectory()
 
-def moveTemplateGraphics():
+def copyTemplateGraphics():
     # home_path
     # figures_directory
     filenames = ['flussdiagram.png', 'flussdiagram2.png', 'phytax_logo.jpg', 'sampling_design.png']
     figures_path = "%s/Validierungsplan_LaTeX/Figures" % home_path
+    valpath = "%s/Validierungsbericht_LaTeX" % home_path
     os.chdir(home_path)
     # print(os.getcwd())
     if os.path.isfile(filenames[0]):
         for i in filenames:
             print(i)
             os.rename("%s/%s" % (home_path, i), "%s/%s" % (figures_path, i))
+            if os.path.exists(valpath):
+                shutil.copyfile("{}/Validierungsplan_LaTeX/Figures/{}".format(home_path,i), "{}/Validierungsbericht_LaTeX/Figures/{}".format(home_path,i))
             #os.rename()
 
-createLaTeXFile()
-moveTemplateGraphics()
+createLaTeXFilePlan()
+createLaTeXFileBericht()
+copyTemplateGraphics()
 
-def inputinfo():
-    def save_var_latex(key,value):
-        data_path = "%s/Validierungsplan_LaTeX" % home_path
+def save_var_latex(key,value,path_name):
+        # data_path = "%s/" % home_path
+        data_path = "{}/{}".format(home_path, path_name)
         os.chdir(data_path)
-
-
         dict_var = {}
-
         file_path = os.path.join(os.getcwd(), "pythonvariables.dat")
 
         try:
@@ -127,17 +151,20 @@ def inputinfo():
             for key in dict_var.keys():
                 f.write(f"{key},{dict_var[key]}\n")
 
+def inputinfo():
     versEuPh =input("Version Europäische Pharmakopöe: ")
     nrproducts = input("Anzahl an Produkten: ")
     nrgranulatcharges = input("Anzahl an Granulatchargen: ")
 
-    save_var_latex('versEuPH', versEuPh)
-    save_var_latex('nrProducts', nrproducts)
-    save_var_latex('nrGranulatcharges', nrgranulatcharges)
-    save_var_latex('dateRelease', date_release)
+    dir = ["Validierungsplan_LaTeX", "Validierungsbericht_LaTeX"]
+    for i in dir:
+        save_var_latex('versEuPH', versEuPh, i)
+        save_var_latex('nrProducts', nrproducts, i)
+        save_var_latex('nrGranulatcharges', nrgranulatcharges,i)
+        save_var_latex('dateRelease', date_release, i)
 
+# Transfer Variables from Python to a .dat file once into Validierungsbericht and once in Validierungsplan
 inputinfo()
-
 opus_files = []
 
 
