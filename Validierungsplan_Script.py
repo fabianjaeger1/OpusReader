@@ -1,3 +1,8 @@
+'''
+Make sure to run Python3 not Python2 (will yield an error with the f function)
+'''
+
+from numpy.lib.npyio import save
 from brukeropusreader import read_file
 import os
 import argparse
@@ -8,6 +13,7 @@ import pandas as pd
 import collections
 import string
 import matplotlib
+import glob
 import matplotlib.pyplot as plt
 matplotlib.pyplot.switch_backend('agg')
 import numpy as np
@@ -45,20 +51,27 @@ def createFiguresDirectory():
     else:
         print("Succesfully created the directory %s" % path)
 
+date_release = input("Datum des Documentes (Titel): ")
+
 def createLaTeXFile():
     # currentworkingdir = os.getcwd()
-    date_release = input("Datum des Titels: ")
-   # print("The dir is: %s"%os.listdir(os.getcwd()))
     pathtemplate = "%s/Validierungsplan_LaTeX_Template.tex" % home_path
     if os.path.exists(pathtemplate):
         createLaTeXDirectory()
         createFiguresDirectory()
         os.replace(pathtemplate, "Validierungsplan_LaTeX/ValidierungsplanPHYDENT%s.tex" % date_release)
+        # newpath = "%s/Validierungsplan_LaTeX" % os.getcwd()
+        # os.chdir(newpath)
+        # filename = "ValidierungsplanPHYDENT%s.tex" % date_release
     else:
+        path = "%s/Validierungsplan_LaTeX" % home_path
+        if os.path.exists(path):
+            fileExt = r".tex"
+            file = [_ for _ in os.listdir(path) if _.endswith(fileExt)]
+            texfile = file[0]
+            os.chdir(path)
+            os.rename(texfile,"ValidierungsplanPHYDENT%s.tex" % date_release)
         pass
-    newpath = "%s/Validierungsplan_LaTeX" % os.getcwd()
-    os.chdir(newpath)
-    filename = "ValidierungsplanPHYDENT%s.tex" % date_release
     # print(filename)
     #print(os.getcwd())
     # subprocess.check_call(['pdflatex', filename])
@@ -90,31 +103,44 @@ def moveTemplateGraphics():
 createLaTeXFile()
 moveTemplateGraphics()
 
-def save_var_latex(key,value):
-    data_path = "%s/Validierungsplan_LaTeX" % home_path
-    os.chdir(data_path)
+def inputinfo():
+    def save_var_latex(key,value):
+        data_path = "%s/Validierungsplan_LaTeX" % home_path
+        os.chdir(data_path)
 
 
-    dict_var = {}
+        dict_var = {}
 
-    file_path = os.path.join(os.getcwd(), "pythonvariables.dat")
+        file_path = os.path.join(os.getcwd(), "pythonvariables.dat")
 
-    try:
-        with open(file_path, newline="") as file:
-            reader = csv.reader(file)
-            for row in reader:
-                dict_var[row[0]] = row[1]
-    except FileNotFoundError:
-        pass
+        try:
+            with open(file_path, newline="") as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    dict_var[row[0]] = row[1]
+        except FileNotFoundError:
+            pass
 
-    dict_var[key] = value
+        dict_var[key] = value
 
-    with open(file_path, "w") as f:
-        for key in dict_var.keys():
-            f.write(f"{key},{dict_var[key]}\n")
-            
-save_var_latex('test', 2)
+        with open(file_path, "w") as f:
+            for key in dict_var.keys():
+                f.write(f"{key},{dict_var[key]}\n")
+
+    versEuPh =input("Version Europäische Pharmakopöe: ")
+    nrproducts = input("Anzahl an Produkten: ")
+    nrgranulatcharges = input("Anzahl an Granulatchargen: ")
+
+    save_var_latex('versEuPH', versEuPh)
+    save_var_latex('nrProducts', nrproducts)
+    save_var_latex('nrGranulatcharges', nrgranulatcharges)
+    save_var_latex('dateRelease', date_release)
+
+inputinfo()
+
 opus_files = []
+
+
 def Pruefdatenfiles():
     #Path where figures will be saved
     #print(os.getcwd())
@@ -359,6 +385,19 @@ def createplots():
     abshum_plot(abshum, abshum_rf)
     relhum_plot(relhum,relhum_rf)
 createplots()
+
+def compileLatex():
+    path = "%s/Validierungsplan_LaTeX" % home_path
+    os.chdir(path)
+    file_name = "ValidierungsplanPHYDENT%s" %date_release
+    os.system("pdflatex %s" % file_name)
+    os.system("pdflatex %s" % file_name)
+    # Has to be compiled twice due to LaTeX references
+
+compileLatex()
+
+
+
 # def categories():
 #     os.chdir(home_path)
 #     opus_data = read_file("LN-3083i_20200702_B.0")

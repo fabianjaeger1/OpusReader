@@ -10,16 +10,18 @@
 \usepackage[parfill]{parskip}
 \usepackage{framed}
 \usepackage{fancyhdr}
-% \usepackage{pythontext}
 \usepackage[headheight=55pt,
  left=25mm, bottom =25mm]{geometry}
+ 
+ 
+\graphicspath {{Figures/}}
 
 \usepackage{scalerel,stackengine,amsmath}
 \newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
     \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
 
 
-% package to open file containing variables
+% Package to open file containing variables
 \usepackage{datatool, filecontents}
 \DTLsetseparator{,}% Set the separator between the columns.
 
@@ -27,13 +29,16 @@
 \DTLloaddb[noheader, keys={thekey,thevalue}]{pythonvariables}{pythonvariables.dat}
 % Loads mydata.dat with column headers 'thekey' and 'thevalue'
 \newcommand{\var}[1]{\DTLfetch{pythonvariables}{thekey}{#1}{thevalue}}
+%To access the specfic variable, call \var{thekey}
 
 %%%%%% SANS SERIF FONT %%%%%%%%
 %\usepackage[OT1]{fontenc}
 %\renewcommand*\familydefault{\sfdefault}
 
+
+
 %Header Customization
-\fancyhead[L]{\includegraphics[width=0.23\linewidth]{phytax_logo.jpg} \\
+\fancyhead[L]{\includegraphics[width=0.23\linewidth]{Figures/phytax_logo.jpg} \\
 }
 \fancyhead[C]{\footnotesize
 \begin{tabular}{ l }
@@ -57,24 +62,26 @@
 \rfoot[]{\thepage/\pageref{LastPage} }
 \cfoot{}
 \renewcommand{\headrulewidth}{0pt}
+
+
+
+
+
+
 %%%%%%%%%%%%%%%% VARIABLEN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand\VersionPhEur{10.5}
-\newcommand\DatumRelease{20210929}
-\newcommand\AnzahlProdukte{227}
+\newcommand\VersionPhEur{\var{versEuPH}}
+\newcommand\DatumRelease{\var{dateRelease}}
+\newcommand\AnzahlProdukte{\var{nrProducts}}
 \newcommand\VerhaeltnisLernValDaten{73.2:27.8}
 
 \newcommand\NoSpectraRefLearn{5200 (54.2\%)}
-\newcommand\NoSpectraRefVal{200 (20.8\%)}
+\newcommand\NoSpectraRefVal{2000 (20.8\%)}
 \newcommand\NoSpectraPruef{2400 (25.0\%)}
 \newcommand\NrSpektren{7128}
-\newcommand\Granulatchargen{396}
+\newcommand\Granulatchargen{\var{nrGranulatcharges}}
 \newcommand\NrMatrix{72}
 \newcommand\DateRange{2020-2021}
 
-
-%%%%% Verhaeltnis %%%%%%%
-
-% \newcommand\TotNrLernValData{\NoSpectraRefLearn + \NoSpectraRefVal}
 
 \begin{document}
 \section*{Validierungsplan für Prüfungsmethode: PHYDENT-\DatumRelease }
@@ -97,10 +104,6 @@ Freigegeben & & & \\
 \end{tabular}
 \end{center}
 
-
-
-
-This is document version: \var{document_version}
 
 
 
@@ -138,7 +141,7 @@ PHYDENT ist eine computergestützte chemometrische Methode für die infrarotspek
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{flussdiagram.png}
+\includegraphics[width=0.8\textwidth]{Figures/flussdiagram.png}
 \caption{Flussdiagramm Verwendungsszenarion}
 \label{fig:Flussdiagram}
 \end{figure}
@@ -189,7 +192,7 @@ Messung des unbedeckten Sensors (Leermessung/Blank) ist ein möglicher Messfehle
  
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=0.8\textwidth]{sampling_design.png}
+\includegraphics[width=0.8\textwidth]{Figures/sampling_design.png}
 \end{center}
 \caption{Übersicht zum Sampling Design. Alle Spektren werden ausgewogen auf zwei baugleichen Geräten gemessen (A/B). Die Prüfdaten der Granulatprodukte bestehen aus Messungen von Gebinden, welche nicht für die Modellierung (L/V-Daten) verwendet wurden.
 Kreis = Einzelne Messung, Farbe = Unterschiedliche Gebinde, A/B = Gerätecode
@@ -210,7 +213,7 @@ Die Methodenvalidierung erfolgt gemäß internationalen Richtlinien (ICH Guideli
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=0.8\textwidth]{flussdiagram2.png}
+\includegraphics[width=0.8\textwidth]{Figures/flussdiagram2.png}
 \end{center}
 \caption{Flussdiagramm zur Überprüfung der einzelnen Parameter}
 \label{fig:Sampling_Design}
